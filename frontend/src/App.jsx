@@ -9,7 +9,7 @@ const App = () => {
   const [socket, setSocket] = useState(null)
 
   useEffect(() => {
-    const socket = io('https://chess-rv.onrender.com')
+    const socket = io('http://localhost:5000')
     setSocket(socket)
   }, [])
 

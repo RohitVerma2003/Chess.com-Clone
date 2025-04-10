@@ -86,8 +86,8 @@ const Block = ({ block, rowIndex, colIndex, playerRole, socket }) => {
           draggable={playerRole === block.color}
           data-row={rowIndex}
           data-col={colIndex}
-          onDragStart={handleDragStart}
-          onDragEnd={handleDragEnd}
+          onTouchStart={handleDragStart}
+          onTouchEnd={handleDragEnd}
           className={`${playerRole === 'b' ? 'rotate-180' : ''}`}
         />
       )}
