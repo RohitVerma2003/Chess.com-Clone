@@ -72,7 +72,7 @@ const Block = ({ block, rowIndex, colIndex, playerRole, socket }) => {
 
   return (
     <div
-      className={`w-20 h-20 flex justify-center items-center ${
+      className={`w-10 h-10 md:w-20 md:h-20 flex justify-center items-center ${
         (rowIndex + colIndex) % 2 === 0 ? 'bg-white' : 'bg-[#81b64c]'
       }`}
       data-row={rowIndex}
@@ -88,6 +88,7 @@ const Block = ({ block, rowIndex, colIndex, playerRole, socket }) => {
           data-col={colIndex}
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
+          className={`${playerRole === 'b' ? 'rotate-180' : ''}`}
         />
       )}
     </div>

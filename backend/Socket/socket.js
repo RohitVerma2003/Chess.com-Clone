@@ -13,7 +13,7 @@ const io = new Server(server, {
 });
 
 let userConnected = {};
-const chess = new Chess();
+let chess = new Chess();
 const board = chess.board();
 let userTurn = "w";
 
@@ -22,11 +22,11 @@ io.on('connection', (socket) => {
 
     if (!userConnected.white) {
         userConnected.white = socket.id;
-        socket.emit("playerRole", "w");
+        socket.emit("playerRole", {playerRole : "w" , board : chess.board()});
     }
     else if (!userConnected.black) {
         userConnected.black = socket.id;
-        socket.emit("playerRole", "b");
+        socket.emit("playerRole", {playerRole : "b" , board : chess.board()});
     }else socket.disconnect();
 
     socket.on("move", (move) => {
@@ -39,7 +39,8 @@ io.on('connection', (socket) => {
             if (result) {
                 io.emit("move", move);
                 if(chess.isGameOver()){
-                    io.emit("gameOver" , userTurn);
+                    io.emit("gameOver" , userTurn === "w" ? "White" : "Black");
+                    chess = new Chess()
                     return;
                 }
                 userTurn = chess.turn();
