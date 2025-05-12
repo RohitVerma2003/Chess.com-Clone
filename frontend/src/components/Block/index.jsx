@@ -54,7 +54,6 @@ const Block = ({ block, rowIndex, colIndex, playerRole, socket }) => {
       promotion: 'q'
     }
 
-    console.log(move)
     socket.emit('move', move)
   }
 
@@ -83,11 +82,11 @@ const Block = ({ block, rowIndex, colIndex, playerRole, socket }) => {
       {block && (
         <img
           src={getPieceImage(block.type, block.color)}
-          draggable={playerRole === block.color}
+          draggable={playerRole === block?.color || 'none'}
           data-row={rowIndex}
           data-col={colIndex}
-          onTouchStart={handleDragStart}
-          onTouchEnd={handleDragEnd}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
           className={`${playerRole === 'b' ? 'rotate-180' : ''}`}
         />
       )}
