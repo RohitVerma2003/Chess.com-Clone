@@ -8,16 +8,13 @@ import { updateBoard } from './store/Slices/board'
 const App = () => {
   const [socket, setSocket] = useState(null)
 
-  document.addEventListener('contextmenu', event => {
-    event.preventDefault()
-  })
-
   useEffect(() => {
     const socket = io('https://chess-rv.onrender.com')
     setSocket(socket)
   }, [])
 
-  useEffect(() => {}, [socket?.connected])
+  useEffect(()=>{
+  } , [socket?.connected])
 
   let chess = new Chess()
   const [playerRole, setPlayerRole] = useState(null)

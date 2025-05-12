@@ -11,18 +11,18 @@ const Block = ({ block, rowIndex, colIndex, playerRole, socket }) => {
   const getPieceImage = (type, color) => {
     const key = `${type}${color}`
     const images = {
-      pb: 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Chess_pdt60.png',
-      pw: 'https://upload.wikimedia.org/wikipedia/commons/0/04/Chess_plt60.png',
-      rb: 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Chess_rdt60.png',
-      rw: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chess_rlt60.png',
-      nb: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Chess_ndt60.png',
-      nw: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Chess_nlt60.png',
-      bb: 'https://upload.wikimedia.org/wikipedia/commons/8/81/Chess_bdt60.png',
-      bw: 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Chess_blt60.png',
-      qb: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Chess_qdt60.png',
-      qw: 'https://upload.wikimedia.org/wikipedia/commons/4/49/Chess_qlt60.png',
-      kb: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Chess_kdt60.png',
-      kw: 'https://upload.wikimedia.org/wikipedia/commons/3/3b/Chess_klt60.png'
+      pb: '♟',
+      pw: '♙',
+      rb: '♜',
+      rw: '♖',
+      nb: '♞',
+      nw: '♘',
+      bb: '♝',
+      bw: '♗',
+      qb: '♛',
+      qw: '♕',
+      kb: '♚',
+      kw: '♔'
     }
     return images[key] || ''
   }
@@ -80,15 +80,14 @@ const Block = ({ block, rowIndex, colIndex, playerRole, socket }) => {
       onDragOver={e => e.preventDefault()}
     >
       {block && (
-        <img
-          src={getPieceImage(block.type, block.color)}
+        <div
           draggable={playerRole === block?.color || 'none'}
           data-row={rowIndex}
           data-col={colIndex}
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
-          className={`${playerRole === 'b' ? 'rotate-180' : ''}`}
-        />
+          className={`${playerRole === 'b' ? 'rotate-180' : ''} text-3xl`}
+        >{getPieceImage(block.type, block.color)}</div>
       )}
     </div>
   )
